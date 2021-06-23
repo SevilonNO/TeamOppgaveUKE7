@@ -22,32 +22,32 @@
         "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
         "u", "v", "w", "x", "y", "z", "æ", "ø", "å", " "];
 
-    let tingen = "";
+    let output = "";
     updateView();
     function updateView() {
         let html = "";
-        html += `<input id="input" type="text"/>` + "</br>" + tingen;
+        html += `<input id="input" type="text"/>` + "</br>" + output;
         appen.innerHTML = html;
     }
 
     function translateToMorse(e) {
         let inputValue = document.getElementById("input").value;
         let slicedInput = inputValue.split("");
+        let count = 0;
         if (e.keyCode === 13) {
             for (let i = 0; i < inputValue.length; i++) {
-                for (let j = 0; j < alpha.length; j++) {
-                    let noeTing = slicedInput.indexOf(alpha[j])
-                    console.log(noeTing)
-                    if (noeTing >= 0) {
-                        tingen += morseCodeArray[j]
-                        noeTing = "";
+                for (let j; j < alpha.length; j++) {
+                    if (slicedInput.indexOf(alpha[j]) >= 0) {
+                        output += morseCodeArray[j] + " ";
+                        console.log("hei");
+                    } else {
+                        console.log("hello")
                     }
                 }
                 slicedInput = "";
             }
             document.getElementById("input").value = ""
             updateView();
-            return tingen;
         }
     }
 </script>
