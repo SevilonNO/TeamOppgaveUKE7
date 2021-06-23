@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Translate</title>
 </head>
-<body>
+
+<body onkeydown="return translateToMorse(event)">
     <div id="app"></div>
 </body>
+<script>
+    let appen = document.getElementById("app");
+    const morseCodeArray = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....',
+        '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.',
+        '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-',
+        '-.--', '--..', '·−·−', '−−−·', '·−−·−', ' '];
+
+    const alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+        "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+        "u", "v", "w", "x", "y", "z", "æ", "ø", "å", " "];
+
+    let tingen = "";
+    updateView();
+    function updateView() {
+        let html = "";
+        html += `<input id="input" type="text"/>` + "</br>" + tingen;
+        appen.innerHTML = html;
+    }
+
+    function translateToMorse(e) {
+        let inputValue = document.getElementById("input").value;
+        let slicedInput = inputValue.split("");
+        if (e.keyCode === 13) {
+            for (let i = 0; i < inputValue.length; i++) {
+                for (let j = 0; j < alpha.length; j++) {
+                    let noeTing = slicedInput.indexOf(alpha[j])
+                    console.log(noeTing)
+                    if (noeTing >= 0) {
+                        tingen += morseCodeArray[j]
+                        noeTing = "";
+                    }
+                }
+                slicedInput = "";
+            }
+            document.getElementById("input").value = ""
+            updateView();
+            return tingen;
+        }
+    }
+</script>
+
 </html>
