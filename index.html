@@ -36,15 +36,16 @@
         let count = 0;
         if (e.keyCode === 13) {
             for (let i = 0; i < inputValue.length; i++) {
-                for (let j; j < alpha.length; j++) {
-                    if (slicedInput.indexOf(alpha[j]) >= 0) {
+                let indexedInput = slicedInput[i];
+                console.log(indexedInput);
+                for (let j = 0; j < alpha.length; j++) {
+                    if (indexedInput.indexOf(alpha[j]) >= 0) {
                         output += morseCodeArray[j] + " ";
                         console.log("hei");
                     } else {
                         console.log("hello")
                     }
                 }
-                slicedInput = "";
             }
             document.getElementById("input").value = ""
             updateView();
