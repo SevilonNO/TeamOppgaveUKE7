@@ -22,11 +22,12 @@
         "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
         "u", "v", "w", "x", "y", "z", "æ", "ø", "å", " "];
 
+    let tempText = "";
     let output = "";
     updateView();
     function updateView() {
         let html = "";
-        html += `<input id="input" type="text"/>` + "</br>" + output;
+        html += `<input id="input" type="text"/>` + "</br>" + "<h1>" + output + "</h1>";
         appen.innerHTML = html;
     }
 
@@ -37,16 +38,14 @@
         if (e.keyCode === 13) {
             for (let i = 0; i < inputValue.length; i++) {
                 let indexedInput = slicedInput[i];
-                console.log(indexedInput);
                 for (let j = 0; j < alpha.length; j++) {
                     if (indexedInput.indexOf(alpha[j]) >= 0) {
-                        output += morseCodeArray[j] + " ";
-                        console.log("hei");
-                    } else {
-                        console.log("hello")
+                        tempText += morseCodeArray[j] + " ";
                     }
                 }
             }
+            output = tempText;
+            tempText = "";
             document.getElementById("input").value = ""
             updateView();
         }
